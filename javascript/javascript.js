@@ -1,7 +1,5 @@
-
+// set targetGame as main object for whole game.
 const targetGame = {};
-
-// finding the container height and width
 
 // set varibles with default values.
 // score start at 0;
@@ -18,18 +16,6 @@ let playerBullet = targetGame.player.bullet;
 $('.scoreCount').html(`${playerScore}`);
 $('.bulletCount').html(`${playerBullet}`);
 
-// have targets (divs) that randomize location or slide in and out and a set time frame. set timeout set interval
-// targets x and y locations need to be relative to the users screen size.
-// use math.floor math.random to randomize for x and y
-// set targetGame as main object for whole game.
-
-// let randomPosX = Math.floor((Math.random() * containerWidth));
-// let randomPosY = Math.floor((Math.random() * containerHeight));
-
-//     $('.target').css('left', randomPosX);
-//     $('.target').css('top', randomPosY);
-
-
 
 
 //get click function to be detected.
@@ -43,15 +29,17 @@ targetGame.hitTarget = function() {
         if(playerBullet <= 0) {
             console.log('no bullet no score');
             $('.reload-prompt').show();
-
         } else {
-            console.log(`score +1`);
+            // have targets (divs) that randomize location or slide in and out and a set time frame. set timeout set interval
+            // targets x and y locations need to be relative to the users screen size.
+            // use math.floor math.random to randomize for x and y
             let randomPosX = Math.floor((Math.random() * targetGame.randomTargetLocationX));
             let randomPosY = Math.floor((Math.random() * targetGame.randomTargetLocationY));
-
+            
             $('.randomTarget').css('left', randomPosX);
             $('.randomTarget').css('top', randomPosY);       
             // when click on target score + 1
+            console.log(`score +1`);
             playerScore += 1;
             $('.scoreCount').html(`${playerScore}`);
             playerBullet -= 1;
@@ -82,10 +70,30 @@ targetGame.reloadBullets = function() {
         $('.reload-prompt').hide();
     }); 
 } // end targetGame.reloadBullets functoin.
-        
 
 
-// console.log(score);
+// this function to initialize all the functions of the game.
+targetGame.init = function (){
+    // declaring height and width of targets and containers here. this way the page will load in order to get the correct values of the container and the widths/heights of the targets
+    // finding the container height and width
+    targetGame.targetWidth = $('.randomTarget').width();
+    targetGame.targetHeight = $('.randomTarget').height();
+    targetGame.containerHeight = $('.container').height();
+    targetGame.containerWidth = $('.container').width(); 
+    // randomTargetLocation is the location in which the targets are randomizing in. needed to detect the container width/height, then subtracted the target width and height so that it stays within the container.
+    targetGame.randomTargetLocationY = targetGame.containerHeight - targetGame.targetHeight;
+    targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
+    
+    //
+    targetGame.hitTarget();
+    targetGame.bulletUsed();
+    targetGame.reloadBullets();
+}
+
+// calls targetGame.init to load the everything onto the page
+$(function(){
+    targetGame.init();
+}); // end document ready
 
 // if bullets = 0 and click health - 10 and prompt no bullets.
 
@@ -96,29 +104,3 @@ targetGame.reloadBullets = function() {
 // if no response within 10 secs. health - 10/100
 // have a nice visual with fancy targets animated bullets
 // upon 10 pts change background and target colours as a "new level"
-
-// this function to initialize all the functions of the game.
-    targetGame.init = function (){
-        // declaring height and width of targets and containers here. this way the page will load in order to get the correct values of the container and the widths/heights of the targets
-        targetGame.targetWidth = $('.randomTarget').width();
-        targetGame.targetHeight = $('.randomTarget').height();
-        targetGame.containerHeight = $('.container').height();
-        targetGame.containerWidth = $('.container').width(); 
-        
-        targetGame.randomTargetLocationY = targetGame.containerHeight - targetGame.targetHeight;
-        targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
-        
-        
-
-        // console.log (targetGame.containerHeight, targetGame.containerWidth, targetGame.targetHeight, targetGame.targetWidth)
-
-
-        targetGame.hitTarget();
-        targetGame.bulletUsed();
-        targetGame.reloadBullets();
-    }
-    
-// calls targetGame.init to load the everything onto the page
-$(function(){
-    targetGame.init();
-}); // end document ready
