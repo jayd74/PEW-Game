@@ -5,30 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style/style.css">
-    <title>Document</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <title>Target Practice</title>
 </head>
 <body>
+    <div class="wrapper">
+        <div class="container">
+
+            <div class="target fas fa-bullseye fa-10x"></div>
+            <div class="target fas fa-bullseye fa-10x"></div>
+            <div class="target fas fa-bullseye fa-10x"></div>
+
+            
+            <a href="">
+                <button class="reload-btn">Reload</button>
+            </a>
+            <div class="info-box">
+                <div class="score-info">
+                    <h3>Score</h3>
+                    <h3 class="scoreCount">
+                        <!-- score Count to be added dynamically here-->
+                    </h3>
+                </div>
+                <div class="bullet-info">
+                    <h3>Bullets Left</h3>
+                    <h3 class="bulletCount">
+                        <!-- bullet Count to be added dynamically here-->
+                    </h3>
+                </div>
+            </div>
+            <div class="reload-prompt">RELOAD!!!</div>
+        </div> <!--end container-->
+    </div> <!-- end wrapper-->
     
-    <div class="target"></div>
-    <div class="target"></div>
-    <div class="target"></div>
-
-    <div class="info-box">
-        <div class="score-info">
-            <h3>Score</h3>
-            <h3 class="scoreCount">
-                <!-- score Count to be added dynamically here-->
-            </h3>
-        </div>
-        <div class="bullet-info">
-            <h3>Bullets Left</h3>
-            <h3 class="bulletCount">
-             <!-- bullet Count to be added dynamically here-->
-
-            </h3>
-        </div>
-
-    </div>
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
     <script src="javascript/javascript.js"></script>
