@@ -9,15 +9,41 @@ targetGame.player = {
     bullet: 6,
 }; 
 // declaring playerScore and playerBullet for to simplify variable
+    
     let playerScore = targetGame.player.score;
-    let playerBullet = targetGame.player.bullet;
-    // Display Scores and Bullet Count functions 
-    targetGame.displayScore = function(){
-        $('.scoreCount').html(`${playerScore}`);
-    }
-    targetGame.displayBullet = function(){
-        $('.bulletCount').html(`${playerBullet}`);
-    } 
+    let playerBullet = targetGame.player.bullet;            
+
+   
+
+        // Display Scores and Bullet Count functions 
+        targetGame.displayScore = function(){
+            $('.scoreCount').text(`${playerScore}`);
+        }
+        targetGame.displayBullet = function(){
+            $('.bulletCount').text(`${playerBullet}`);
+        } 
+        // get name from player and input it to the player field
+        targetGame.displayName = function(){
+            $('form').on('submit', function(e){ 
+                e.preventDefault();
+                let playerName = $('input').val();
+                $('.playerOne').text(`${playerName}`);
+            });
+        }
+        targetGame.gameStart = function (){
+            $('button').on('click', function(){
+                console.log('click')
+                $('.start-screen').hide();
+                $('.randomTarget').css('display','inline-block');
+            });
+        }
+
+        // targetGame.gameStart = function(){
+        //     $()
+        // }
+
+
+
 targetGame.setRandomContainer = function () {
      // declaring height and width of targets and containers here. this way the page will load in order to get the correct values of the container and the widths / heights of the targets
     // finding the container height and width
@@ -115,10 +141,13 @@ targetGame.reloadBullets = function() {
 targetGame.init = function (){
     
     //calling the functions
+    
     targetGame.setRandomContainer();
     targetGame.randomizeTargets();
     targetGame.displayScore();
     targetGame.displayBullet();
+    targetGame.displayName();
+    targetGame.gameStart();
     targetGame.hitTarget();
     targetGame.bulletUsed();
     targetGame.reloadBullets();
