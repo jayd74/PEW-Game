@@ -187,8 +187,8 @@ h2 {
   display: inline-block;
   padding: 20px;
   margin: 0;
-  color: #fff;
-  text-shadow: 1px 1px 5px #000; }
+  color: #000;
+  text-shadow: 1px 1px 5px #fff; }
 
 .score-info,
 .bullet-info {
@@ -208,5 +208,3 @@ h2 {
   float: right;
   text-shadow: 1px 1px 5px black;
   margin: 50px; }
-  .reload-btn :active {
-    border: 0; }

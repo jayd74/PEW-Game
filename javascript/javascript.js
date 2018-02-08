@@ -36,35 +36,43 @@ targetGame.hitTarget = function() {
             $('.randomTarget').css('left', randomPosX);
             $('.randomTarget').css('top', randomPosY);       
             // when click on target score + 1
-            console.log(`score +1`);
             playerScore += 1;
             $('.scoreCount').html(`${playerScore}`);
             playerBullet -= 1;
             $('.bulletCount').html(`${playerBullet}`);
-
-            //if score hits 10 you prompt you win
-            if (playerScore === 10) {
-                $('.win-prompt').show();
-            };
         }
+            //if score hits 10 you prompt you win
+        if (playerScore === 10) {
+                $('.win-prompt').show();
+                playerBullet += 1;
+                playerScore -= 0;
+            };
     });
 } //end targetGame.hitTarget Function
 
 // once you get to 10 pts prompt you win
-$('.win-prompt').on('click', function () {
-    console.log('bnanananna')
+$('.win-prompt').find(':button').on('click', function () {
+    //score and bullets gets reset back bullet + 1 to make up for the -1 on click.
+    playerScore = 0;
+    playerBullet = 6 + 1;
+    // display new score and hide prompt
+    $('.scoreCount').html(`${playerScore}`);
+    $('.bulletCount').html(`${playerBullet}`);
+    $('.win-prompt').hide();
 })
 
 targetGame.bulletUsed = function() {
-    $('body').on('click', function(){
+    $('.container').on('click', function(){
         if(playerBullet !== 0) {
-            playerBullet -= 1   ;
-        }
-        $('.bulletCount').html(`${playerBullet}`);
+            playerBullet -= 1 ;
+        } 
+    $('.bulletCount').html(`${playerBullet}`);
         // if bulletis 0 prompt "no bullets, reload!"
         if(playerBullet === 0) {
             $('.reload-prompt').show();
-        } 
+        } else if (playerScore === 10) {
+            playerBullet ++;
+        }
     });
 } //end targetGame.bulletUsed function
 
@@ -72,7 +80,9 @@ targetGame.bulletUsed = function() {
 targetGame.reloadBullets = function() {
     $('.reload-btn').on('click',function(e){
         e.preventDefault();
-        playerBullet = 6 + 1; 
+        playerBullet = 6 ; 
+        $('.bulletCount').html(`${playerBullet}`);
+
         // + 1 is make up for the 1 that is reduced during when the button is clicked
         $('.reload-prompt').hide();
     }); 
