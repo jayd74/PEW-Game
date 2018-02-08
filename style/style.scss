@@ -30,8 +30,9 @@ h2 {
     border-radius: 50%; 
     border: solid thick #0F0F0F;
     position: relative;   
-    display: none;
     z-index: 0;
+    visibility: hidden;
+    display: inline-block;
 }
 
 .info-box {
@@ -104,7 +105,7 @@ h2 {
     color: white;
     float: right;
     text-shadow: 1px 1px 5px #0F0F0F;
-    margin: 50px;
+    margin: 50px 10px;
     }
 
 .reload-btn:active {

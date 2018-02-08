@@ -27,22 +27,36 @@ targetGame.player = {
             $('form').on('submit', function(e){ 
                 e.preventDefault();
                 let playerName = $('input').val();
-                $('.playerOne').text(`${playerName}`);
+                 if (playerName !== '') {
+                    $('input').val('');
+                } else if(playerName === ''){
+                    $('.playerOne').text(`N/A`);
+                } else {
+                    $('.playerOne').text(`${playerName}`);
+                } 
+
+               
             });
         }
+
+// if ($('.start-screen').show()) {
+//     console.log('trueeeeeeee');
+//     $('.container').on('click',function(){
+//         playerBullet += 1;
+//     });
+// } else if ($('.start-screen').hide()) {
+//     $('.container').on('click', function () {
+//         playerBullet -= 1;
+//     });
+// }
+
         targetGame.gameStart = function (){
             $('button').on('click', function(){
                 console.log('click')
                 $('.start-screen').hide();
-                $('.randomTarget').css('display','inline-block');
+                $('.randomTarget').css('visibility','visible');
             });
         }
-
-        // targetGame.gameStart = function(){
-        //     $()
-        // }
-
-
 
 targetGame.setRandomContainer = function () {
      // declaring height and width of targets and containers here. this way the page will load in order to get the correct values of the container and the widths / heights of the targets
@@ -73,6 +87,7 @@ targetGame.hitTarget = function() {
         e.stopPropagation();
         // if target is clicked and there are no bullets. score does not go up (score -1 ???) and prompt reload!
         // if player has no bullets, and player clicks on target, score does not go up.
+       
         if(playerBullet <= 0) {
             console.log('no bullet no score');
             $('.reload-prompt').show();
