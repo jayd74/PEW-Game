@@ -208,3 +208,8 @@ h2 {
   float: right;
   text-shadow: 1px 1px 5px black;
   margin: 50px; }
+
+.reload-btn:active {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9); }
