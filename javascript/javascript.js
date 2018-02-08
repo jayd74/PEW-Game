@@ -16,8 +16,6 @@ let playerBullet = targetGame.player.bullet;
 $('.scoreCount').html(`${playerScore}`);
 $('.bulletCount').html(`${playerBullet}`);
 
-
-
 //get click function to be detected.
 // on click the target disappears
 targetGame.hitTarget = function() {
@@ -35,7 +33,6 @@ targetGame.hitTarget = function() {
             // use math.floor math.random to randomize for x and y
             let randomPosX = Math.floor((Math.random() * targetGame.randomTargetLocationX));
             let randomPosY = Math.floor((Math.random() * targetGame.randomTargetLocationY));
-            
             $('.randomTarget').css('left', randomPosX);
             $('.randomTarget').css('top', randomPosY);       
             // when click on target score + 1
@@ -44,10 +41,20 @@ targetGame.hitTarget = function() {
             $('.scoreCount').html(`${playerScore}`);
             playerBullet -= 1;
             $('.bulletCount').html(`${playerBullet}`);
+
+            //if score hits 10 you prompt you win
+            if (playerScore === 10) {
+                $('.win-prompt').show();
+            };
         }
     });
 } //end targetGame.hitTarget Function
-// when click bullet -1. 
+
+// once you get to 10 pts prompt you win
+$('.win-prompt').on('click', function () {
+    console.log('bnanananna')
+})
+
 targetGame.bulletUsed = function() {
     $('body').on('click', function(){
         if(playerBullet !== 0) {
@@ -72,6 +79,8 @@ targetGame.reloadBullets = function() {
 } // end targetGame.reloadBullets functoin.
 
 
+// when click bullet -1. 
+
 // this function to initialize all the functions of the game.
 targetGame.init = function (){
     // declaring height and width of targets and containers here. this way the page will load in order to get the correct values of the container and the widths/heights of the targets
@@ -84,23 +93,22 @@ targetGame.init = function (){
     targetGame.randomTargetLocationY = targetGame.containerHeight - targetGame.targetHeight;
     targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
     
-    //
+    //calling the functions
     targetGame.hitTarget();
     targetGame.bulletUsed();
     targetGame.reloadBullets();
 }
-
 // calls targetGame.init to load the everything onto the page
 $(function(){
     targetGame.init();
 }); // end document ready
 
-// if bullets = 0 and click health - 10 and prompt no bullets.
+// when play again or next level button is pressed. change level or theme.
+// when next level button is pressed. class is changed to aliens.
+// when class is changed. changes: targets to aliens, change font, background change 
+// score is reset to 0
 
-// once you get to 10 pts prompt you win
 
 //////////////bonus: ////////////
 // make moving targets
-// if no response within 10 secs. health - 10/100
 // have a nice visual with fancy targets animated bullets
-// upon 10 pts change background and target colours as a "new level"
