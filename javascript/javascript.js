@@ -13,8 +13,6 @@ targetGame.player = {
     let playerScore = targetGame.player.score;
     let playerBullet = targetGame.player.bullet;            
 
-   
-
         // Display Scores and Bullet Count functions 
         targetGame.displayScore = function(){
             $('.scoreCount').text(`${playerScore}`);
@@ -27,23 +25,16 @@ targetGame.player = {
             $('form').on('submit', function(e){ 
                 e.preventDefault();
                 let playerName = $('input').val();
-                 if (playerName !== '') {
+                if (playerName === '') {
+                    $('.playerOne').text(`test`);
+                } else if (playerName !== '') {
                     $('input').val('');
-                } else if(playerName === ''){
-                    $('.playerOne').text(`N/A`);
-                } else {
-                    $('.playerOne').text(`${playerName}`);
                 } 
-
-               
+                $('.playerOne').text(`${playerName}`);
             });
         }
 
-// if ($('.start-screen').show()) {
-//     console.log('trueeeeeeee');
-//     $('.container').on('click',function(){
-//         playerBullet += 1;
-//     });
+
 // } else if ($('.start-screen').hide()) {
 //     $('.container').on('click', function () {
 //         playerBullet -= 1;
@@ -70,7 +61,26 @@ targetGame.setRandomContainer = function () {
     targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
 } // end setRandomContainer
 
+
+
+
 targetGame.randomizeTargets = function(){
+    let randomAlien = 0;
+    $('.randomTarget').on('click',function(){
+        randomAlien = Math.floor((Math.random() * 5 + 1));
+        console.log(randomAlien)
+        if (randomAlien === 1) {
+            $('.randomTarget').html(`<img src="images/alien-01.svg" alt="orange alien">`);
+        } else if (randomAlien === 2) {
+            $('.randomTarget').html(`<img src="images/alien-02.svg" alt="red alien">`);
+        } else if (randomAlien === 3) {
+            $('.randomTarget').html(`<img src="images/alien-03.svg" alt="blue alien">`);
+        } else if (randomAlien === 4) {
+            $('.randomTarget').html(`<img src="images/alien-04.svg" alt="lightblue alien">`);
+        } else if (randomAlien === 5) {
+            $('.randomTarget').html(`<img src="images/alien-05.svg" alt="pink alien">`);
+        }  
+    })
     // have targets (divs) that randomize location or slide in and out and a set time frame. set timeout set interval
     // targets x and y locations need to be relative to the users screen size.
     // use math.floor math.random to randomize for x and y
@@ -78,6 +88,8 @@ targetGame.randomizeTargets = function(){
     let randomPosY = Math.floor((Math.random() * targetGame.randomTargetLocationY));
     $('.randomTarget').css('left', randomPosX);
     $('.randomTarget').css('top', randomPosY);
+
+    
 }
 //get click function to be detected.
 // on click the target disappears
@@ -133,7 +145,7 @@ targetGame.bulletUsed = function() {
             $('.reload-prompt').show();
         } else if (playerScore === 10) {
             playerBullet ++;
-        }
+        } 
     });
 } //end targetGame.bulletUsed function
 
@@ -159,9 +171,9 @@ targetGame.init = function (){
     
     targetGame.setRandomContainer();
     targetGame.randomizeTargets();
+    targetGame.displayName();
     targetGame.displayScore();
     targetGame.displayBullet();
-    targetGame.displayName();
     targetGame.gameStart();
     targetGame.hitTarget();
     targetGame.bulletUsed();
@@ -172,16 +184,13 @@ $(function(){
     targetGame.init();
 }); // end document ready
 
-// when play again or next level button is pressed. change level or theme.
-// when next level button is pressed. class is changed to aliens.
-// when class is changed. changes: targets to aliens, change font, background change 
-// score is reset to 0
 
 
 //////////////bonus: ////////////
-// add intro page with name input field.
 // sound on click
 // make moving targets
 // have a nice visual with fancy targets animated bullets
-// level 2
 // visual bullets
+
+// when next level button is pressed. class is changed to aliens.
+// when class is changed. changes: targets to aliens, change font, background change 
