@@ -59,12 +59,16 @@ h2 {
     padding: 25px;
     width: 50%;
     text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    top: 200px;
     input {
         background: #040417;
         color: #32cd24;
         border: solid thin #32cd24;
         padding: 5px;
         margin:  10px;
+        text-transform: uppercase;
     }
     input::placeholder {
         color: #32cd24;
@@ -92,6 +96,7 @@ h2 {
     padding: 5px;
     color: #32cd24;
     border: thin solid #32cd24;
+    text-transform: uppercase;
 }
 
 .score-bullet-info {
@@ -123,6 +128,7 @@ h2 {
     color: #32cd24;
     float: right;
     margin: 50px 10px;
+    text-transform: uppercase;
     }
 
 .reload-btn:active {

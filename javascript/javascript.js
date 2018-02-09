@@ -3,7 +3,7 @@ const targetGame = {};
 
 // set varibles with default values.
 // score start at 0;
-// start with and max 6 bullets .   
+// start with and max 6 bullets .
 targetGame.player = {
     score: 0,
     bullet: 6,
@@ -89,7 +89,7 @@ targetGame.randomizeTargets = function(){
         'left':randomPosX+'px',
         'top':randomPosY+'px',
         'display':'inline-block'
-    }).appendTo('.container').fadeIn(300).delay(1000).fadeOut(300, function () {
+    }).appendTo('.container').fadeIn(300).delay(1500).fadeOut(300, function () {
         $(this).show();
         targetGame.randomizeTargets();
     }); 
