@@ -61,14 +61,11 @@ targetGame.setRandomContainer = function () {
     targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
 } // end setRandomContainer
 
-
-
-
 targetGame.randomizeTargets = function(){
+    //randomAlien generates a number on click. .randomTarget changes based off results.
     let randomAlien = 0;
     $('.randomTarget').on('click',function(){
         randomAlien = Math.floor((Math.random() * 5 + 1));
-        console.log(randomAlien)
         if (randomAlien === 1) {
             $('.randomTarget').html(`<img src="images/alien-01.svg" alt="orange alien">`);
         } else if (randomAlien === 2) {
@@ -86,10 +83,17 @@ targetGame.randomizeTargets = function(){
     // use math.floor math.random to randomize for x and y
     let randomPosX = Math.floor((Math.random() * targetGame.randomTargetLocationX));
     let randomPosY = Math.floor((Math.random() * targetGame.randomTargetLocationY));
-    $('.randomTarget').css('left', randomPosX);
-    $('.randomTarget').css('top', randomPosY);
 
-    
+    // append the css properties to .randomTarget. did a fade an fade out to mimic disappearing target.
+    $('.randomTarget').css({
+        'left':randomPosX+'px',
+        'top':randomPosY+'px',
+        'display':'inline-block'
+    }).appendTo('.container').fadeIn(300).delay(1000).fadeOut(300, function () {
+        $(this).show();
+        targetGame.randomizeTargets();
+    }); 
+    // $('.randomTarget').css('top', randomPosY); 
 }
 //get click function to be detected.
 // on click the target disappears
