@@ -25,27 +25,19 @@ targetGame.player = {
             $('form').on('submit', function(e){ 
                 e.preventDefault();
                 let playerName = $('input').val();
-                if (playerName === '') {
-                    $('.playerOne').text(`test`);
-                } else if (playerName !== '') {
-                    $('input').val('');
-                } 
-                $('.playerOne').text(`${playerName}`);
+                  if(playerName !== ''){
+                    $('input').val('');               
+                    $('.playerOne').text(`${playerName}`);    
+                }
             });
         }
-
-
-// } else if ($('.start-screen').hide()) {
-//     $('.container').on('click', function () {
-//         playerBullet -= 1;
-//     });
-// }
-
         targetGame.gameStart = function (){
-            $('button').on('click', function(){
+            $('.play-game').on('click', function(){
                 console.log('click')
                 $('.start-screen').hide();
                 $('.randomTarget').css('visibility','visible');
+                targetGame.resetScore();
+                targetGame.bulletUsed();
             });
         }
 
@@ -61,10 +53,10 @@ targetGame.setRandomContainer = function () {
     targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
 } // end setRandomContainer
 
+
 targetGame.randomizeTargets = function(){
     //randomAlien generates a number on click. .randomTarget changes based off results.
     let randomAlien = 0;
-    $('.randomTarget').on('click',function(){
         randomAlien = Math.floor((Math.random() * 5 + 1));
         if (randomAlien === 1) {
             $('.randomTarget').html(`<img src="images/alien-01.svg" alt="orange alien">`);
@@ -77,66 +69,71 @@ targetGame.randomizeTargets = function(){
         } else if (randomAlien === 5) {
             $('.randomTarget').html(`<img src="images/alien-05.svg" alt="pink alien">`);
         }  
-    })
+
     // have targets (divs) that randomize location or slide in and out and a set time frame. set timeout set interval
     // targets x and y locations need to be relative to the users screen size.
     // use math.floor math.random to randomize for x and y
     let randomPosX = Math.floor((Math.random() * targetGame.randomTargetLocationX));
     let randomPosY = Math.floor((Math.random() * targetGame.randomTargetLocationY));
-
     // append the css properties to .randomTarget. did a fade an fade out to mimic disappearing target.
     $('.randomTarget').css({
         'left':randomPosX+'px',
         'top':randomPosY+'px',
         'display':'inline-block'
-    }).appendTo('.container').fadeIn(300).delay(1500).fadeOut(300, function () {
+    }).appendTo('.container').fadeIn(500).delay(2000).fadeOut(500, function () {
         $(this).show();
         targetGame.randomizeTargets();
-    }); 
-    // $('.randomTarget').css('top', randomPosY); 
-}
+    }); // $('.randomTarget').css('top', randomPosY); 
+} // end randomizeTargets function.
+
+// function to change the alien img to a pew img when hit.
+targetGame.changePew = function(){
+    $('.randomTarget img').attr('src',"images/pew.svg")
+};
+
 //get click function to be detected.
 // on click the target disappears
 targetGame.hitTarget = function() {
     $('.randomTarget').on('click', function(e){
+
         // stopPropagation Prevents further propagation of the current event in the capturing and bubbling phases
         e.stopPropagation();
         // if target is clicked and there are no bullets. score does not go up (score -1 ???) and prompt reload!
         // if player has no bullets, and player clicks on target, score does not go up.
-       
         if(playerBullet <= 0) {
             console.log('no bullet no score');
             $('.reload-prompt').show();
             // else if score is 10, target show, score stays at 10.
         } else if (playerScore === 10){
             $('.randomTarget').show();
-            playerScore = 10;
-        } else {
-            targetGame.randomizeTargets();
-            playerScore += 1;
-            targetGame.displayScore();
-            playerBullet -= 1;
-            targetGame.displayBullet();
+            // playerBullet += 1;
+            // playerScore -= 0;
+            $('.win-prompt').show();// playerScore = 10;   
+        } else {  
+            console.log('hey')
+            targetGame.changePew()
+            setTimeout(function() {
+                targetGame.randomizeTargets();
+                playerScore += 1;
+                targetGame.displayScore();
+                playerBullet -= 1;
+                targetGame.displayBullet();
+            },300)
         }
             //if score hits 10 you prompt you win
-        if (playerScore === 10) {
-                $('.win-prompt').show();
-                playerBullet += 1;
-                playerScore -= 0;
-            };
+      
     });
 } //end targetGame.hitTarget Function
 
-// once you get to 10 pts prompt you win
-$('.win-prompt').find(':button').on('click', function () {
-    //score and bullets gets reset back bullet + 1 to make up for the -1 on click.
+// targetGame.restartGame = function (){
+
+// }
+targetGame.resetScore = function(){
+    playerBullet = 6;
     playerScore = 0;
-    playerBullet = 6 + 1;
-    // display new score and hide prompt
-    targetGame.displayScore();
     targetGame.displayBullet();
-    $('.win-prompt').hide();
-})
+    targetGame.displayScore();
+}
 
 targetGame.bulletUsed = function() {
     $('.container').on('click', function(){
@@ -147,6 +144,10 @@ targetGame.bulletUsed = function() {
     // if bulletis 0 prompt "no bullets, reload!"
         if(playerBullet === 0) {
             $('.reload-prompt').show();
+            $('.reload-btn').css({
+                'background':'#32cd24',
+                'color':'#040417'
+            })     
         } else if (playerScore === 10) {
             playerBullet ++;
         } 
@@ -165,6 +166,21 @@ targetGame.reloadBullets = function() {
     }); 
 } // end targetGame.reloadBullets functoin.
 
+// once you get to 10 pts prompt you win
+targetGame.gameWin = function(){
+
+    $('.play-again').on('click', function () {
+        //score and bullets gets reset back bullet + 1 to make up for the -1 on click.
+        // playerScore = 0;
+        // playerBullet = 6;
+        // // display new score and hide prompt
+        // targetGame.displayScore();
+        // targetGame.displayBullet();
+        // targetGame.gameStart();
+        targetGame.resetScore();
+        $('.win-prompt').hide();
+    })
+}
 
 // when click bullet -1. 
 
@@ -172,23 +188,30 @@ targetGame.reloadBullets = function() {
 targetGame.init = function (){
     
     //calling the functions
-    
+    targetGame.gameStart();
     targetGame.setRandomContainer();
     targetGame.randomizeTargets();
     targetGame.displayName();
     targetGame.displayScore();
     targetGame.displayBullet();
-    targetGame.gameStart();
     targetGame.hitTarget();
-    targetGame.bulletUsed();
+    // targetGame.bulletUsed();
     targetGame.reloadBullets();
+    targetGame.gameWin();
 }
 // calls targetGame.init to load the everything onto the page
 $(function(){
     targetGame.init();
 }); // end document ready
 
+//design cue feedback
+// make instructions
+// - add restart button 
 
+//completed design que tasks
+//- make border full - bleed
+// - make scorcard bigger 
+//- give feedback on the recharge button when charge hits zero - more margin between button and border 
 
 //////////////bonus: ////////////
 // sound on click
