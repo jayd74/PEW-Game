@@ -192,6 +192,9 @@ h2 {
   .mission h1 {
     font-size: 50px;
     margin: 0 0 25px 0; }
+  .mission h3 {
+    font-size: 30px;
+    line-height: 20px; }
   .mission img {
     width: 50px;
     height: 50px; }
@@ -204,11 +207,11 @@ h2 {
   color: #0431f7;
   margin: 0 auto;
   padding: 2%;
-  width: 25%;
+  width: 35%;
   text-align: center;
   text-transform: uppercase;
   position: relative;
-  top: 150px;
+  top: 35%;
   display: none; }
   .start-screen input {
     background: #040417;
@@ -217,7 +220,8 @@ h2 {
     padding: 15px;
     margin: 10px 0;
     text-transform: uppercase;
-    font-size: 20px; }
+    font-size: 20px;
+    text-align: center; }
   .start-screen input::-webkit-input-placeholder {
     color: #32cd24; }
   .start-screen input:-ms-input-placeholder {
@@ -229,7 +233,6 @@ h2 {
 
 .reload-prompt,
 .win-prompt {
-  background: #040417;
   border: thick solid #32cd24;
   width: 50%;
   padding: 50px 10px;
@@ -237,8 +240,16 @@ h2 {
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  top: 150px;
+  top: 35%;
   text-align: center; }
+
+.reload-prompt {
+  background: #040417; }
+
+.win-prompt {
+  background: #32cd24; }
+  .win-prompt h2 {
+    color: #040417; }
 
 .mission button,
 .start-screen button,
@@ -284,3 +295,47 @@ button:hover {
   -webkit-transform: scale(0.9);
   -ms-transform: scale(0.9);
   transform: scale(0.9); }
+
+@media (min-width: 768px) and (max-width: 940px) {
+  .mission {
+    margin: 20% auto;
+    width: 70%; }
+    .mission h1 {
+      font-size: 75px; }
+    .mission h3 {
+      font-size: 50px; }
+    .mission p {
+      font-size: 30px; }
+  .score-bullet-info {
+    margin: 10% 0%; }
+  .reload-btn {
+    margin: 30% 5%;
+    font-size: 40px; }
+  .mission button,
+  .start-screen button,
+  .win-prompt button {
+    background: #32cd24;
+    color: #040417;
+    margin: 0;
+    font-size: 40px;
+    padding: 2% 10%; }
+  .start-screen {
+    width: 75%; }
+    .start-screen h2 {
+      font-size: 50px; }
+    .start-screen input {
+      padding: 10px 0px;
+      width: 80%;
+      margin: 5% auto;
+      display: block;
+      font-size: 40px; }
+  .reload-prompt h2,
+  .win-prompt h2 {
+    font-size: 50px;
+    margin: 0;
+    font-size: 40px;
+    padding: 2% 10%; }
+  .win-prompt button {
+    background: #040417;
+    color: #32cd24;
+    margin: 3%; } }

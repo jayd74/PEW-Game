@@ -116,8 +116,13 @@ targetGame.hitTarget = function() {
         if(playerBullet <= 0) {
             console.log('no bullet no score');
             $('.reload-prompt').show();
+            $('.reload-btn').css({
+                'background': '#32cd24',
+                'color': '#040417'
+            }),
             // else if score is 10, target show, score stays at 10.
             playerBullet ++ ;
+            playerScore --;
             console.log(playerBullet)
         } else if (playerScore >= 9 || playerScore === 10){
             $('.randomTarget').show();
@@ -125,7 +130,6 @@ targetGame.hitTarget = function() {
             playerScore = 10;
             console.log('score' + playerScore)
             targetGame.displayScore();
-
             targetGame.displayBullet();
             $('.win-prompt').show();
         } else {
@@ -162,11 +166,11 @@ targetGame.bulletUsed = function() {
             targetGame.displayBullet ();
         } else if(playerBullet === 0) {
             // if bulletis 0 prompt "no bullets, reload!"
+            $('.reload-prompt').show();
             $('.reload-btn').css({
                 'background':'#32cd24',
                 'color':'#040417'
         }), 
-             $('.reload-prompt').show();
             console.log(playerBullet);
         // } else if (playerScore === 10) {
         //     playerBullet ++;
