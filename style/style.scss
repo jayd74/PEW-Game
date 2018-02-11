@@ -1,6 +1,5 @@
 @import "components/normalize";
 
-
 body {
     background: #040417;
     cursor: crosshair;
@@ -13,10 +12,8 @@ body {
     position: relative;
 }
 .container {
-    // background: url('https://images.unsplash.com/photo-1460129105763-a10bea1ccc53?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f3138c965884efe2cb8c949da466b406&auto=format&fit=crop&w=2378&q=80') no-repeat;
     background: #040417;
     border: solid thick #0431f7;
-    // background-size: cover;
     width: 100%;
     min-height: 550px;
     position: relative;
@@ -39,17 +36,30 @@ h2 {
 }
 
 .info-box {
-    // background: url('../images/purty_wood.png') no-repeat;
-    // background-size: cover;
     background: #040417;
     position: relative;
     border: solid thick #0431f7;
     border-top: none;
 }
 
+.mission {
+    color: #32cd24;
+    height: 95%;
+    border: thick solid #0431f7;
+    width: 30%;
+    margin: 0 auto;
+    padding: 25px;
+    display: block;
+    h1 {
+        font-size:50px;
+        margin: 0 0 25px 0;
+    }
+    img {
+        width: 50px;
+        height: 50px;
+    }
+}
 .start-screen {
-    // background: url('../images/purty_wood.png') no-repeat;
-    // background-size: cover;
     background:#040417;
     border: solid thick #0431f7;
     color: #0431f7;
@@ -59,7 +69,8 @@ h2 {
     text-align: center;
     text-transform: uppercase;
     position: relative;
-    top: 200px;
+    top: 150px;
+    display: none;
     input {
         background: #040417;
         color: #32cd24;
@@ -76,7 +87,6 @@ h2 {
 
 .reload-prompt,
 .win-prompt {
-    // background: url('../images/purty_wood.png');
     background: #040417;
     border: thick solid #32cd24;
     width: 50%;
@@ -85,15 +95,14 @@ h2 {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    top: 150px;
     text-align: center;
 }
 .start-screen button,
 .win-prompt button{
-    // background: url('../images/noun_338827_cc_bronze.png') no-repeat;
-    // background-size: cover;
     background: #040417;
     padding: 15px;
-    margin-left: 10px;
+    margin-top: 15px;
     color: #32cd24;
     border: thin solid #32cd24;
     text-transform: uppercase;
@@ -125,7 +134,6 @@ button:hover{
 }
 
 .reload-btn {
-   
     background: #040417;
     border: thick solid #32cd24;
     width: 300px;

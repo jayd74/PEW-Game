@@ -11,7 +11,24 @@ targetGame.player = {
 // declaring playerScore and playerBullet for to simplify variable
     
     let playerScore = targetGame.player.score;
-    let playerBullet = targetGame.player.bullet;            
+    let playerBullet = targetGame.player.bullet;                
+
+    targetGame.pewMission = function (){
+        $('.pew-ok').on('click', function(){
+            $('.mission').hide();
+            $('.start-screen').show();
+        })
+    }
+
+    targetGame.gameStart = function (){
+            $('.play-game').on('click', function(){
+                console.log('click')
+                $('.start-screen').hide();
+                $('.randomTarget').css('visibility','visible');
+                targetGame.resetScore();
+                targetGame.bulletUsed();
+            });
+        }
 
         // Display Scores and Bullet Count functions 
         targetGame.displayScore = function(){
@@ -31,16 +48,7 @@ targetGame.player = {
                 }
             });
         }
-        targetGame.gameStart = function (){
-            $('.play-game').on('click', function(){
-                console.log('click')
-                $('.start-screen').hide();
-                $('.randomTarget').css('visibility','visible');
-                targetGame.resetScore();
-                targetGame.bulletUsed();
-            });
-        }
-
+      
 targetGame.setRandomContainer = function () {
      // declaring height and width of targets and containers here. this way the page will load in order to get the correct values of the container and the widths / heights of the targets
     // finding the container height and width
@@ -95,9 +103,9 @@ targetGame.changePew = function(){
 // on click the target disappears
 targetGame.hitTarget = function() {
     $('.randomTarget').on('click', function(e){
-
         // stopPropagation Prevents further propagation of the current event in the capturing and bubbling phases
         e.stopPropagation();
+        targetGame.displayBullet();
         // if target is clicked and there are no bullets. score does not go up (score -1 ???) and prompt reload!
         // if player has no bullets, and player clicks on target, score does not go up.
         if(playerBullet <= 0) {
@@ -107,61 +115,66 @@ targetGame.hitTarget = function() {
         } else if (playerScore === 10){
             $('.randomTarget').show();
             // playerBullet += 1;
-            // playerScore -= 0;
-            $('.win-prompt').show();// playerScore = 10;   
+            // playerScore += 1;
+            // targetGame.displayScore();
+            // targetGame.displayBullet();
+            //if score hits 10 you prompt you win
+            $('.win-prompt').show();
         } else {  
             console.log('hey')
             targetGame.changePew()
             setTimeout(function() {
                 targetGame.randomizeTargets();
                 playerScore += 1;
-                targetGame.displayScore();
                 playerBullet -= 1;
-                targetGame.displayBullet();
             },300)
         }
-            //if score hits 10 you prompt you win
-      
-    });
+        targetGame.displayScore();
+    }); 
+    targetGame.displayBullet();
+    targetGame.displayScore();
 } //end targetGame.hitTarget Function
 
 // targetGame.restartGame = function (){
 
 // }
+
+targetGame.bulletUsed = function() {
+    $('.container').on('click', function(){
+        targetGame.displayBullet();
+        if(playerBullet !== 0) {
+            playerBullet -= 1 ;
+              
+            console.log(playerBullet)
+        } else if(playerBullet === 0) {
+            // if bulletis 0 prompt "no bullets, reload!"
+            $('.reload-btn').css({
+                'background':'#32cd24',
+                'color':'#040417'
+            })     
+            $('.reload-prompt').show();
+        } else if (playerScore === 10) {
+            playerBullet ++;
+        }        
+    });
+} //end targetGame.bulletUsed function
+
 targetGame.resetScore = function(){
     playerBullet = 6;
     playerScore = 0;
     targetGame.displayBullet();
     targetGame.displayScore();
 }
-
-targetGame.bulletUsed = function() {
-    $('.container').on('click', function(){
-        if(playerBullet !== 0) {
-            playerBullet -= 1 ;
-        } 
-        targetGame.displayBullet();
-    // if bulletis 0 prompt "no bullets, reload!"
-        if(playerBullet === 0) {
-            $('.reload-prompt').show();
-            $('.reload-btn').css({
-                'background':'#32cd24',
-                'color':'#040417'
-            })     
-        } else if (playerScore === 10) {
-            playerBullet ++;
-        } 
-    });
-} //end targetGame.bulletUsed function
-
 // if hit reload button. bullets reset to 6.
 targetGame.reloadBullets = function() {
     $('.reload-btn').on('click',function(e){
         e.preventDefault();
         playerBullet = 6 ; 
+        $('.reload-btn').css({
+            'background': '#040417',
+            'color': '#32cd24'
+        })  
         targetGame.displayBullet();
-
-        // + 1 is make up for the 1 that is reduced during when the button is clicked
         $('.reload-prompt').hide();
     }); 
 } // end targetGame.reloadBullets functoin.
@@ -188,6 +201,7 @@ targetGame.gameWin = function(){
 targetGame.init = function (){
     
     //calling the functions
+    targetGame.pewMission();
     targetGame.gameStart();
     targetGame.setRandomContainer();
     targetGame.randomizeTargets();

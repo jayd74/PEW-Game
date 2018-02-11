@@ -171,6 +171,21 @@ h2 {
   border: solid thick #0431f7;
   border-top: none; }
 
+.mission {
+  color: #32cd24;
+  height: 95%;
+  border: thick solid #0431f7;
+  width: 30%;
+  margin: 0 auto;
+  padding: 25px;
+  display: block; }
+  .mission h1 {
+    font-size: 50px;
+    margin: 0 0 25px 0; }
+  .mission img {
+    width: 50px;
+    height: 50px; }
+
 .start-screen {
   background: #040417;
   border: solid thick #0431f7;
@@ -181,7 +196,8 @@ h2 {
   text-align: center;
   text-transform: uppercase;
   position: relative;
-  top: 200px; }
+  top: 150px;
+  display: none; }
   .start-screen input {
     background: #040417;
     color: #32cd24;
@@ -209,13 +225,14 @@ h2 {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  top: 150px;
   text-align: center; }
 
 .start-screen button,
 .win-prompt button {
   background: #040417;
   padding: 15px;
-  margin-left: 10px;
+  margin-top: 15px;
   color: #32cd24;
   border: thin solid #32cd24;
   text-transform: uppercase;
