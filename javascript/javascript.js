@@ -25,7 +25,7 @@ targetGame.player = {
                 console.log('click')
                 $('.start-screen').hide();
                 $('.randomTarget').css('visibility','visible');
-                targetGame.resetScore();
+                // targetGame.resetScore();
                 targetGame.bulletUsed();
             });
         }
@@ -56,8 +56,9 @@ targetGame.setRandomContainer = function () {
     targetGame.targetHeight = $('.randomTarget').height();
     targetGame.containerHeight = $('.container').height();
     targetGame.containerWidth = $('.container').width();
+    targetGame.infoBoxHeight = $('.info-box').height();
     // randomTargetLocation is the location in which the targets are randomizing in. needed to detect the container width/height, then subtracted the target width and height so that it stays within the container.
-    targetGame.randomTargetLocationY = targetGame.containerHeight - targetGame.targetHeight;
+    targetGame.randomTargetLocationY = targetGame.containerHeight - targetGame.targetHeight - targetGame.infoBoxHeight;
     targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
 } // end setRandomContainer
 
@@ -94,12 +95,12 @@ targetGame.randomizeTargets = function(){
     }); // $('.randomTarget').css('top', randomPosY); 
 } // end randomizeTargets function.
 
-// function to change the alien img to a pew img when hit.
+// function to change the alien img to a pew img and pew sound when hit.
+
 targetGame.changePew = function(){
-    $('.randomTarget img').attr('src',"images/pew.svg")
-    let pewSound = new Audio('./sounds/417486__mentoslat__8-bit-death-sound.wav')
-    pewSound.play();
-    console.log(pewSound);
+    $('.randomTarget img').attr('src',"images/pew.svg").fadeOut(300)
+    let laserSound = new Audio('./sounds/351811_plasterbrain_laser.mp3')
+    laserSound.play();
 };
 
 //get click function to be detected.
@@ -108,14 +109,23 @@ targetGame.hitTarget = function() {
     $('.randomTarget').on('click', function(e){
         // stopPropagation Prevents further propagation of the current event in the capturing and bubbling phases
         e.stopPropagation();
+        targetGame.changePew()
+        setTimeout(function() {
+            targetGame.randomizeTargets();
+            playerScore += 1;
+            playerBullet -= 1;
+            // console.log(playerScore)
+            targetGame.displayScore();
+        },300)
         targetGame.displayBullet();
+        // targetGame.displayBullet();
         // if target is clicked and there are no bullets. score does not go up (score -1 ???) and prompt reload!
         // if player has no bullets, and player clicks on target, score does not go up.
         if(playerBullet <= 0) {
             console.log('no bullet no score');
             $('.reload-prompt').show();
             // else if score is 10, target show, score stays at 10.
-        } else if (playerScore === 10){
+        } else if (playerScore === 9){
             $('.randomTarget').show();
             // playerBullet += 1;
             // playerScore += 1;
@@ -123,16 +133,9 @@ targetGame.hitTarget = function() {
             // targetGame.displayBullet();
             //if score hits 10 you prompt you win
             $('.win-prompt').show();
-        } else {  
-            console.log('hey')
-            targetGame.changePew()
-            setTimeout(function() {
-                targetGame.randomizeTargets();
-                playerScore += 1;
-                playerBullet -= 1;
-            },300)
         }
-        targetGame.displayScore();
+    
+        // targetGame.displayScore();
     }); 
     targetGame.displayBullet();
     targetGame.displayScore();
@@ -147,8 +150,8 @@ targetGame.bulletUsed = function() {
         targetGame.displayBullet();
         if(playerBullet !== 0) {
             playerBullet -= 1 ;
-              
-            console.log(playerBullet)
+            let pewSound = new Audio('./sounds/417486__mentoslat__8-bit-death-sound.mp3')
+            pewSound.play();
         } else if(playerBullet === 0) {
             // if bulletis 0 prompt "no bullets, reload!"
             $('.reload-btn').css({
@@ -196,13 +199,13 @@ targetGame.gameWin = function(){
 targetGame.init = function (){
     //calling the functions
     targetGame.pewMission();
+    targetGame.hitTarget();
     targetGame.gameStart();
     targetGame.setRandomContainer();
     targetGame.randomizeTargets();
     targetGame.displayName();
     targetGame.displayScore();
     targetGame.displayBullet();
-    targetGame.hitTarget();
     // targetGame.bulletUsed();
     targetGame.reloadBullets();
     targetGame.gameWin();

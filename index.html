@@ -11,82 +11,78 @@
     <title>Target Practice</title>
 </head>
 <body>
-    <div class="container">
-        <div class="randomTarget">
-            <img src="images/alien-04.svg" id="pewpew" alt="blue alien" onclick="changePew()">
-        </div> 
-         <div class="mission">
-            <h1>P.E.W.</h1>
-            <!-- Point Eradicate Win -->
-            <img src="images/alien-01.svg">
-            <img src="images/alien-02.svg">
-            <img src="images/alien-03.svg">
-            <img src="images/alien-04.svg">
-            <img src="images/alien-05.svg">
-            <h3>Mission</h3>
-            <p>
-                Aliens have taken over. Your task is to shot and destroy 10 aliens. Your canon holds 6 ammo at a time. Be sure to Reload so you can destroy the aliens.
-            </p>
-            <!-- <p>Do you accept?</p> -->
-            <button class="pew-accept">
-                I accept my mission
-            </button>
-        </div>
-        <div class="start-screen">
-            <h2>Please Enter Your Name</h2>
-            <form action="">
-                <input type="text" placeholder="ENTER NAME">
-                <button class="play-game">Play</button>
-            </form>
-        </div>
-       
+    <div class="outer-container">
 
-        <div class="reload-prompt">
-            <h2>
-                Reload canons!
-            </h2>
-        </div>
-        <div class="win-prompt">
-            <h2>
-                Mission Complete.
-            </h2>
-            <button class="play-again">
-                re-deploy
-            </button>
-        </div>
-    </div> <!--end container-->
-    <div class="info-box">
-        <div class="wrapper">
-            <div class="score-bullet-info">
-                <div class="score-info">
-                    <h3>Score</h3>        
-                    <h3 class="scoreCount">
-                        <!-- score Count to be added dynamically here-->
-                    </h3>
-                </div>
-                <div class="bullet-info">
-                    <h3>AMMO</h3>
-                    <h3 class="bulletCount">
-                        <!-- bullet Count to be added dynamically here-->
-                    </h3>   
-                    
-                </div>
-                <div class="player-info">
-                        <h3>Player</h3>
-                        <h3 class="playerOne">
-                        N/A
-                        <!-- Display player name after getting from form input-->
+        <div class="container">
+            <div class="randomTarget">
+                <img src="images/alien-04.svg" id="pewpew" alt="blue alien" onclick="changePew()">
+            </div> 
+            <div class="mission">
+                <h1>P.E.W.</h1>
+                <!-- Point Eradicate Win -->
+                <img src="images/alien-01.svg">
+                <img src="images/alien-02.svg">
+                <img src="images/alien-03.svg">
+                <img src="images/alien-04.svg">
+                <img src="images/alien-05.svg">
+                <h3>Mission</h3>
+                <p>
+                    Aliens have taken over. Your task is to shot and destroy 10 aliens. Your canon holds 6 ammo at a time. Be sure to Reload so you can destroy the aliens.
+                </p>
+                <!-- <p>Do you accept?</p> -->
+                <button class="pew-accept">
+                    I accept my mission
+                </button>
+            </div>
+            <div class="start-screen">
+                <h2>Please Enter Your Name</h2>
+                <form action="">
+                    <input type="text" placeholder="ENTER NAME">
+                    <button class="play-game">Play</button>
+                </form>
+            </div>
+            <div class="reload-prompt">
+                <h2>
+                    Reload canons!
+                </h2>
+            </div>
+            <div class="win-prompt">
+                <h2>
+                    Mission Complete.
+                </h2>
+                <button class="play-again">
+                    play again
+                </button>
+            </div>
+        </div> <!--end container-->
+        <div class="info-box">
+            <div class="wrapper">
+                <div class="score-bullet-info">
+                    <div class="score-info">
+                        <h3>Score</h3>        
+                        <h3 class="scoreCount">
+                            <!-- score Count to be added dynamically here-->
                         </h3>
                     </div>
-            </div>
-            <a href="">
-                <button class="reload-btn">RELOAD</button>
-            </a>
-        </div> <!--end wrapper-->
-    </div>
-    
-
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-    <script src="javascript/javascript.js"></script>
-</body>
-</html>
+                    <div class="bullet-info">
+                        <h3>AMMO</h3>
+                        <h3 class="bulletCount">
+                            <!-- bullet Count to be added dynamically here-->
+                        </h3>   
+                    </div>
+                    <div class="player-info">
+                        <h3>Player</h3>
+                        <h3 class="playerOne">
+                            N/A
+                            <!-- Display player name after getting from form input-->
+                        </h3>
+                    </div>
+                </div>
+                    <button class="reload-btn">RELOAD</button>
+            </div> <!--end wrapper-->
+        </div> <!-- info box -->
+    </div> <!-- outer container-->
+        <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+        <script src="javascript/javascript.js"></script>
+    </body>
+    </html>

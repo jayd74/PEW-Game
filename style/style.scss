@@ -1,22 +1,39 @@
 @import "components/normalize";
 
-body {
+html, body {
     background: #040417;
     cursor: crosshair;
     font-family: 'VT323', monospace;
     text-transform: uppercase;
+    max-height: 100vh;
+    // overflow: hidden;
+    // padding: 0;
+}
+
+.outer-container {
+    height: 100vh;
+    overflow: auto;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
 }
 .wrapper {
     max-width: 1000px;
+    height: 100%;
     margin: 0 auto;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 .container {
     background: #040417;
     border: solid thick #0431f7;
     width: 100%;
-    min-height: 550px;
-    position: relative;
+    // padding: 21px;
+    // height: 70%;
+    height: 80%;
+    // position: relative;
+    // display: block;
+    // overflow: hidden;
 }
 
 h2 {
@@ -37,19 +54,23 @@ h2 {
 
 .info-box {
     background: #040417;
-    position: relative;
+    // position: relative;
     border: solid thick #0431f7;
     border-top: none;
+    height: 20%;
 }
 
 .mission {
     color: #32cd24;
-    height: 95%;
     border: thick solid #0431f7;
-    width: 30%;
-    margin: 0 auto;
-    padding: 40px;
+    width: 35%;
+    margin: 4% auto;
+    padding: 3%;
     display: block;
+    // position: relative;
+    // top:50px;
+    // position:relative;
+    // top: 50px;
     h1 {
         font-size:50px;
         margin: 0 0 25px 0;
@@ -67,7 +88,7 @@ h2 {
     border: solid thick #0431f7;
     color: #0431f7;
     margin: 0 auto;
-    padding: 25px;
+    padding: 2%;
     width: 25%;
     text-align: center;
     text-transform: uppercase;
@@ -113,15 +134,14 @@ h2 {
     font-size: 20px;
     }
 
-
-
 button:hover{
     background: #32cd24;
     color: #040417;
 }
 .score-bullet-info {
     display: inline-block;
-    padding: 20px;
+    // padding: 20px;
+    padding: 2%;
     margin: 0;
     color: #32cd24;
 }
@@ -140,12 +160,13 @@ button:hover{
 .reload-btn {
     background: #040417;
     border: thick solid #32cd24;
-    width: 300px;
-    height: 100px;
+    // width: 300px;
+    // height: 100px;
+    padding: 0% 5%;
     font-size: 50px;
     color: #32cd24;
-    float: right;
-    margin: 50px 10px;
+    // margin: 50px 10px;
+    margin: 20% 0%;
     text-transform: uppercase;
     }
 
@@ -153,4 +174,6 @@ button:hover{
     transform: scale(0.9);
 }
 
+@media (max-width: 940px) {
 
+}
