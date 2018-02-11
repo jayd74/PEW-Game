@@ -296,7 +296,7 @@ button:hover {
   -ms-transform: scale(0.9);
   transform: scale(0.9); }
 
-@media (min-width: 768px) and (max-width: 940px) {
+@media (max-width: 1024px) {
   .mission {
     margin: 20% auto;
     width: 70%; }
@@ -339,3 +339,51 @@ button:hover {
     background: #040417;
     color: #32cd24;
     margin: 3%; } }
+
+@media (max-width: 768px) {
+  .mission {
+    width: 70%;
+    margin: 13% auto 0 auto;
+    padding: 10%; }
+    .mission h1 {
+      font-size: 55px; }
+    .mission h3 {
+      font-size: 40px; }
+    .mission img {
+      width: 35px;
+      height: 30px; }
+    .mission p {
+      font-size: 23px; }
+  .score-bullet-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    .score-bullet-info .score-info,
+    .score-bullet-info .bullet-info {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      line-height: 0px;
+      font-size: 30px;
+      color: #32cd24; }
+    .score-bullet-info .player-info {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      width: 25%; }
+      .score-bullet-info .player-info h3 {
+        margin: 10px 20px; }
+    .score-bullet-info h3 {
+      margin: 20px; } }

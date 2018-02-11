@@ -189,7 +189,7 @@ button:hover{
     transform: scale(0.9);
 }
 
-@media (min-width: 768px) and (max-width: 940px){
+@media (max-width: 1024px){
     .mission {
         margin: 20% auto;
         width: 70%;
@@ -202,7 +202,6 @@ button:hover{
         p {
             font-size: 30px;
         }
-
     }
 
     .score-bullet-info {
@@ -253,5 +252,51 @@ button:hover{
             color: #32cd24;
             margin: 3%;
         }
+    }
+}
+
+@media (max-width: 768px){
+    .mission {
+        width: 70%;
+        margin: 13% auto 0 auto;
+        padding: 10%;
+        h1 {
+            font-size: 55px;
+        }
+        h3 {
+            font-size: 40px;
+        }
+        img {
+            width: 35px;
+            height: 30px;
+        }
+        p {
+            font-size: 23px;
+        }
+    }
+    .score-bullet-info {
+        display: flex;
+        padding: 0%;
+        flex-direction: column;
+        .score-info,
+        .bullet-info,
+         {
+            display: flex;
+            justify-content: space-between;
+            line-height: 0px;
+            font-size: 30px;
+            color: #32cd24;
+        } 
+        .player-info {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            h3 {
+                margin: 10px 20px;
+            }
+        }
+        h3 {
+            margin: 20px;
+        }        
     }
 }
