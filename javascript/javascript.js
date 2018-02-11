@@ -26,7 +26,8 @@ targetGame.player = {
                 $('.start-screen').hide();
                 $('.randomTarget').css('visibility','visible');
                 // targetGame.resetScore();
-                targetGame.bulletUsed();
+                targetGame.bulletUsed();    
+                playerBullet ++ ;
             });
         }
 
@@ -109,15 +110,6 @@ targetGame.hitTarget = function() {
     $('.randomTarget').on('click', function(e){
         // stopPropagation Prevents further propagation of the current event in the capturing and bubbling phases
         e.stopPropagation();
-        targetGame.changePew()
-        setTimeout(function() {
-            targetGame.randomizeTargets();
-            playerScore += 1;
-            playerBullet -= 1;
-            // console.log(playerScore)
-            targetGame.displayScore();
-        },300)
-        targetGame.displayBullet();
         // targetGame.displayBullet();
         // if target is clicked and there are no bullets. score does not go up (score -1 ???) and prompt reload!
         // if player has no bullets, and player clicks on target, score does not go up.
@@ -125,20 +117,34 @@ targetGame.hitTarget = function() {
             console.log('no bullet no score');
             $('.reload-prompt').show();
             // else if score is 10, target show, score stays at 10.
-        } else if (playerScore === 9){
+            playerBullet ++ ;
+            console.log(playerBullet)
+        } else if (playerScore >= 9 || playerScore === 10){
             $('.randomTarget').show();
             // playerBullet += 1;
-            // playerScore += 1;
-            // targetGame.displayScore();
-            // targetGame.displayBullet();
-            //if score hits 10 you prompt you win
+            playerScore = 10;
+            console.log('score' + playerScore)
+            targetGame.displayScore();
+
+            targetGame.displayBullet();
             $('.win-prompt').show();
-        }
-    
-        // targetGame.displayScore();
+        } else {
+            targetGame.changePew()
+        setTimeout(function() {
+            targetGame.randomizeTargets();
+            playerScore += 1;
+            playerBullet -= 1;
+            console.log(playerBullet)
+            // console.log(playerScore)
+            targetGame.displayScore();
+            targetGame.displayBullet();
+        },300)
+        targetGame.displayBullet();
+        targetGame.displayScore();
+    }
     }); 
     targetGame.displayBullet();
-    targetGame.displayScore();
+    // targetGame.displayScore();
 } //end targetGame.hitTarget Function
 
 // targetGame.restartGame = function (){
@@ -148,19 +154,22 @@ targetGame.hitTarget = function() {
 targetGame.bulletUsed = function() {
     $('.container').on('click', function(){
         targetGame.displayBullet();
-        if(playerBullet !== 0) {
+        if(playerBullet >= 1 && playerScore < 10) {
             playerBullet -= 1 ;
             let pewSound = new Audio('./sounds/417486__mentoslat__8-bit-death-sound.mp3')
             pewSound.play();
+            console.log(playerBullet);
+            targetGame.displayBullet ();
         } else if(playerBullet === 0) {
             // if bulletis 0 prompt "no bullets, reload!"
             $('.reload-btn').css({
                 'background':'#32cd24',
                 'color':'#040417'
-            })     
-            $('.reload-prompt').show();
-        } else if (playerScore === 10) {
-            playerBullet ++;
+        }), 
+             $('.reload-prompt').show();
+            console.log(playerBullet);
+        // } else if (playerScore === 10) {
+        //     playerBullet ++;
         }        
     });
 } //end targetGame.bulletUsed function
