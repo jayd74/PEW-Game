@@ -14,7 +14,7 @@ targetGame.player = {
     let playerBullet = targetGame.player.bullet;                
 
     targetGame.pewMission = function (){
-        $('.pew-ok').on('click', function(){
+        $('.pew-accept').on('click', function(){
             $('.mission').hide();
             $('.start-screen').show();
         })
@@ -183,23 +183,14 @@ targetGame.reloadBullets = function() {
 targetGame.gameWin = function(){
 
     $('.play-again').on('click', function () {
-        //score and bullets gets reset back bullet + 1 to make up for the -1 on click.
-        // playerScore = 0;
-        // playerBullet = 6;
-        // // display new score and hide prompt
-        // targetGame.displayScore();
-        // targetGame.displayBullet();
-        // targetGame.gameStart();
+        location.reload();
+        // reset score and hide prompt      
         targetGame.resetScore();
         $('.win-prompt').hide();
     })
 }
-
-// when click bullet -1. 
-
 // this function to initialize all the functions of the game.
 targetGame.init = function (){
-    
     //calling the functions
     targetGame.pewMission();
     targetGame.gameStart();
@@ -219,10 +210,10 @@ $(function(){
 }); // end document ready
 
 //design cue feedback
-// make instructions
 // - add restart button 
 
 //completed design que tasks
+// make instructions
 //- make border full - bleed
 // - make scorcard bigger 
 //- give feedback on the recharge button when charge hits zero - more margin between button and border 
