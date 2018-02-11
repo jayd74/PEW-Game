@@ -97,6 +97,9 @@ targetGame.randomizeTargets = function(){
 // function to change the alien img to a pew img when hit.
 targetGame.changePew = function(){
     $('.randomTarget img').attr('src',"images/pew.svg")
+    let pewSound = new Audio('./sounds/417486__mentoslat__8-bit-death-sound.wav')
+    pewSound.play();
+    console.log(pewSound);
 };
 
 //get click function to be detected.
