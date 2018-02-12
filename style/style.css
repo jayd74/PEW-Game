@@ -307,9 +307,9 @@ button:hover {
     .mission p {
       font-size: 30px; }
   .score-bullet-info {
-    margin: 10% 0%; }
+    margin: 0; }
   .reload-btn {
-    margin: 30% 5%;
+    margin: 25px;
     font-size: 40px; }
   .mission button,
   .start-screen button,
