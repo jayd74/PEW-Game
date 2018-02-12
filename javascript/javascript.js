@@ -173,11 +173,11 @@ targetGame.reloadBullets = function() {
     $('.reload-btn').on('click',function(e){
         e.preventDefault();
         playerBullet = 6 ; 
+        targetGame.displayBullet();
         $('.reload-btn').css({
             'background': '#040417',
             'color': '#32cd24'
         })  
-        targetGame.displayBullet();
         $('.reload-prompt').hide();
     }); 
 } // end targetGame.reloadBullets functoin.
