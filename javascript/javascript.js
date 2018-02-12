@@ -168,7 +168,7 @@ targetGame.resetScore = function(){
     targetGame.displayScore();
 }
 
-// if hit reload button. bullets reset to 6.
+// if hit reload button. bullets reset to 6. and plays a recharge sound.
 targetGame.reloadBullets = function() {
     $('.reload-btn').on('click',function(e){
         e.preventDefault();
@@ -178,6 +178,8 @@ targetGame.reloadBullets = function() {
             'background': '#040417',
             'color': '#32cd24'
         })  
+        let rechargeSound = new Audio('./sounds/196907__dpoggioli__laser-gun-recharge.mp3')
+        rechargeSound.play();
         $('.reload-prompt').hide();
     }); 
 } // end targetGame.reloadBullets functoin.
