@@ -254,7 +254,6 @@ button:hover{
         }
     }
 }
-
 @media (max-width: 768px){
     .mission {
         width: 70%;
@@ -299,4 +298,73 @@ button:hover{
             margin: 20px;
         }        
     }
+}
+
+@media (max-width: 480px) {
+    .container {
+        height: 65%;
+    }
+    .info-box {
+        height: 35%;
+    }
+    .mission {
+        width: 100%;
+        margin: 0% auto;
+        padding: 10%;
+        height: 100%;
+        border: 0;
+        img:not(#alientitle) {
+            display: none;
+        }
+        img {
+            width: 75px;
+            height: 75px;
+        }
+        h1 {
+            margin: 0;
+        }
+        h3 {
+            margin: 20px;
+        }
+        p {
+            margin: 15px;
+        }
+    }
+    .wrapper {
+        flex-direction: column-reverse;
+    }
+    .start-screen {
+        border: 0;
+        padding: 10%;
+        top: 13%;
+        width: 100%;
+        position: relative;
+    }
+    .score-bullet-info {
+        margin-top: 0;
+        h3 {
+            font-size: 25px;
+        }
+        .player-info {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+    .randomTarget {
+        width: 75px;
+        height: 75px;
+    }
+    .reload-btn {
+        margin: 7% 10%;
+        font-size: 30px;
+        padding: 5%;
+    }   
+    .reload-prompt,
+    .win-prompt {
+        width: 100%;
+        top: 25%;
+    }
+
 }

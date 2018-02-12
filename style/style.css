@@ -387,3 +387,64 @@ button:hover {
         margin: 10px 20px; }
     .score-bullet-info h3 {
       margin: 20px; } }
+
+@media (max-width: 480px) {
+  .container {
+    height: 65%; }
+  .info-box {
+    height: 35%; }
+  .mission {
+    width: 100%;
+    margin: 0% auto;
+    padding: 10%;
+    height: 100%;
+    border: 0; }
+    .mission img:not(#alientitle) {
+      display: none; }
+    .mission img {
+      width: 75px;
+      height: 75px; }
+    .mission h1 {
+      margin: 0; }
+    .mission h3 {
+      margin: 20px; }
+    .mission p {
+      margin: 15px; }
+  .wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse; }
+  .start-screen {
+    border: 0;
+    padding: 10%;
+    top: 13%;
+    width: 100%;
+    position: relative; }
+  .score-bullet-info {
+    margin-top: 0; }
+    .score-bullet-info h3 {
+      font-size: 25px; }
+    .score-bullet-info .player-info {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      width: 100%;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between; }
+  .randomTarget {
+    width: 75px;
+    height: 75px; }
+  .reload-btn {
+    margin: 7% 10%;
+    font-size: 30px;
+    padding: 5%; }
+  .reload-prompt,
+  .win-prompt {
+    width: 100%;
+    top: 25%; } }
