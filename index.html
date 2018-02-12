@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <title>Target Practice</title>
 </head>
 <body>
     <div class="outer-container">
-
         <div class="container">
             <div class="randomTarget">
                 <img src="images/alien-04.svg" id="pewpew" alt="blue alien" onclick="changePew()">
             </div> 
+            <!-- main menu, mission, introduction pop up -->
             <div class="mission">
                 <h1>P.E.W.</h1>
-                <!-- Point Eradicate Win -->
                 <img src="images/alien-01.svg" alt="orange alien">
                 <img src="images/alien-02.svg" alt="red alien">
                 <img src="images/alien-03.svg" alt="blue alien">
@@ -29,14 +27,11 @@
                 <p>point at aliens</p>
                 <p>Eradicate aliens</p>
                 <p>win at 10 aliens</p>
-                <!-- <p>
-                    Aliens have taken over. Your task is to shoot and destroy 10 aliens. Dont forget to Reload. 
-                </p> -->
-                <!-- <p>Do you accept?</p> -->
                 <button class="pew-accept">
                     ACCEPT  
                 </button>
             </div>
+            <!-- prompt to enter name and start game -->
             <div class="start-screen">
                 <h2>Please Enter Your Name</h2>
                 <form action="">
@@ -44,6 +39,7 @@
                     <button class="play-game">Play</button>
                 </form>
             </div>
+            <!-- reload prompt -->
             <div class="reload-prompt">
                 <h2>
                     Reload canons
@@ -58,6 +54,7 @@
                 </button>
             </div>
         </div> <!--end container-->
+       <!-- info box, score, bullets, player name and reload button -->
         <div class="info-box">
             <div class="wrapper">
                 <div class="score-bullet-info">

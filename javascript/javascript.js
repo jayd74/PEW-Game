@@ -1,36 +1,35 @@
 // set targetGame as main object for whole game.
 const targetGame = {};
-
 // set varibles with default values.
-// score start at 0;
-// start with and max 6 bullets .
+// score start at 0; start with and max 6 bullets .
 targetGame.player = {
     score: 0,
     bullet: 6,
 }; 
 // declaring playerScore and playerBullet for to simplify variable
-    
     let playerScore = targetGame.player.score;
     let playerBullet = targetGame.player.bullet;                
-
+// function for main menu with instructions aka .mission
+// when "accept" button is clicked, .mission is hidden and .start-screen will appear
     targetGame.pewMission = function (){
         $('.pew-accept').on('click', function(){
             $('.mission').hide();
             $('.start-screen').show();
         })
     }
-
+    // function for start screen, name input.
+    // on click hide .start-screen menu. and the game begins.
+    // targets and invisible. will appear on click.
+    // function bulletUsed starts here to prevent listening for clicks before game start.
+    // playerBullet += 1 to make up for the bullets used on click when hit .play-game
     targetGame.gameStart = function (){
             $('.play-game').on('click', function(){
-                console.log('click')
                 $('.start-screen').hide();
                 $('.randomTarget').css('visibility','visible');
-                // targetGame.resetScore();
                 targetGame.bulletUsed();    
-                playerBullet ++ ;
+                playerBullet += 1;
             });
         }
-
         // Display Scores and Bullet Count functions 
         targetGame.displayScore = function(){
             $('.scoreCount').text(`${playerScore}`);
@@ -63,7 +62,6 @@ targetGame.setRandomContainer = function () {
     targetGame.randomTargetLocationX = targetGame.containerWidth - targetGame.targetWidth;
 } // end setRandomContainer
 
-
 targetGame.randomizeTargets = function(){
     //randomAlien generates a number on click. .randomTarget changes based off results.
     let randomAlien = 0;
@@ -79,7 +77,6 @@ targetGame.randomizeTargets = function(){
         } else if (randomAlien === 5) {
             $('.randomTarget').html(`<img src="images/alien-05.svg" alt="pink alien">`);
         }  
-
     // have targets (divs) that randomize location or slide in and out and a set time frame. set timeout set interval
     // targets x and y locations need to be relative to the users screen size.
     // use math.floor math.random to randomize for x and y
@@ -93,28 +90,24 @@ targetGame.randomizeTargets = function(){
     }).appendTo('.container').fadeIn(500).delay(2000).fadeOut(500, function () {
         $(this).show();
         targetGame.randomizeTargets();
-    }); // $('.randomTarget').css('top', randomPosY); 
+    }); 
 } // end randomizeTargets function.
 
 // function to change the alien img to a pew img and pew sound when hit.
-
 targetGame.changePew = function(){
     $('.randomTarget img').attr('src',"images/pew.svg").fadeOut(300)
     let laserSound = new Audio('./sounds/351811_plasterbrain_laser.mp3')
     laserSound.play();
 };
-
 //get click function to be detected.
 // on click the target disappears
 targetGame.hitTarget = function() {
     $('.randomTarget').on('click', function(e){
         // stopPropagation Prevents further propagation of the current event in the capturing and bubbling phases
         e.stopPropagation();
-        // targetGame.displayBullet();
         // if target is clicked and there are no bullets. score does not go up (score -1 ???) and prompt reload!
         // if player has no bullets, and player clicks on target, score does not go up.
         if(playerBullet <= 0) {
-            console.log('no bullet no score');
             $('.reload-prompt').show();
             $('.reload-btn').css({
                 'background': '#32cd24',
@@ -123,12 +116,9 @@ targetGame.hitTarget = function() {
             // else if score is 10, target show, score stays at 10.
             playerBullet ++ ;
             playerScore --;
-            console.log(playerBullet)
         } else if (playerScore >= 9 || playerScore === 10){
             $('.randomTarget').show();
-            // playerBullet += 1;
             playerScore = 10;
-            console.log('score' + playerScore)
             targetGame.displayScore();
             targetGame.displayBullet();
             $('.win-prompt').show();
@@ -138,8 +128,6 @@ targetGame.hitTarget = function() {
             targetGame.randomizeTargets();
             playerScore += 1;
             playerBullet -= 1;
-            console.log(playerBullet)
-            // console.log(playerScore)
             targetGame.displayScore();
             targetGame.displayBullet();
         },300)
@@ -148,42 +136,38 @@ targetGame.hitTarget = function() {
     }
     }); 
     targetGame.displayBullet();
-    // targetGame.displayScore();
 } //end targetGame.hitTarget Function
 
-// targetGame.restartGame = function (){
-
-// }
-
+// bulletUsed function. when click anywhere on game container. bullets will get reduced by 1
 targetGame.bulletUsed = function() {
     $('.container').on('click', function(){
         targetGame.displayBullet();
+        // if bullet is within 1 - 10, on click bullets will reduce by 1 and a sound will played.
         if(playerBullet >= 1 && playerScore < 10) {
             playerBullet -= 1 ;
             let pewSound = new Audio('./sounds/417486__mentoslat__8-bit-death-sound.mp3')
             pewSound.play();
-            console.log(playerBullet);
             targetGame.displayBullet ();
+            // else if, bullet is 0. the reload prompt will show, and the reload button will turn green.
         } else if(playerBullet === 0) {
             // if bulletis 0 prompt "no bullets, reload!"
             $('.reload-prompt').show();
             $('.reload-btn').css({
                 'background':'#32cd24',
                 'color':'#040417'
-        }), 
-            console.log(playerBullet);
-        // } else if (playerScore === 10) {
-        //     playerBullet ++;
+            })
         }        
     });
 } //end targetGame.bulletUsed function
 
+// function to reset score when game restarts.
 targetGame.resetScore = function(){
     playerBullet = 6;
     playerScore = 0;
     targetGame.displayBullet();
     targetGame.displayScore();
 }
+
 // if hit reload button. bullets reset to 6.
 targetGame.reloadBullets = function() {
     $('.reload-btn').on('click',function(e){
@@ -200,7 +184,6 @@ targetGame.reloadBullets = function() {
 
 // once you get to 10 pts prompt you win
 targetGame.gameWin = function(){
-
     $('.play-again').on('click', function () {
         location.reload();
         // reset score and hide prompt      
@@ -208,6 +191,7 @@ targetGame.gameWin = function(){
         $('.win-prompt').hide();
     })
 }
+
 // this function to initialize all the functions of the game.
 targetGame.init = function (){
     //calling the functions
@@ -219,7 +203,6 @@ targetGame.init = function (){
     targetGame.displayName();
     targetGame.displayScore();
     targetGame.displayBullet();
-    // targetGame.bulletUsed();
     targetGame.reloadBullets();
     targetGame.gameWin();
 }
@@ -227,21 +210,3 @@ targetGame.init = function (){
 $(function(){
     targetGame.init();
 }); // end document ready
-
-//design cue feedback
-// - add restart button 
-
-//completed design que tasks
-// make instructions
-//- make border full - bleed
-// - make scorcard bigger 
-//- give feedback on the recharge button when charge hits zero - more margin between button and border 
-
-//////////////bonus: ////////////
-// sound on click
-// make moving targets
-// have a nice visual with fancy targets animated bullets
-// visual bullets
-
-// when next level button is pressed. class is changed to aliens.
-// when class is changed. changes: targets to aliens, change font, background change 
