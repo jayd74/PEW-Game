@@ -448,3 +448,35 @@ button:hover {
   .win-prompt {
     width: 100%;
     top: 25%; } }
+
+@media (max-width: 360px) {
+  .mission h1 {
+    font-size: 50px;
+    line-height: 40px;
+    margin: 10px; }
+  .mission h3 {
+    margin: 20px; }
+  .mission img {
+    width: 60px;
+    height: 60px; }
+  .mission p {
+    font-size: 20px;
+    margin: 10px; }
+  .mission button,
+  .start-screen button {
+    font-size: 30px;
+    margin: 5px; }
+  .score-bullet-info h3 {
+    margin: 15px; }
+  .score-bullet-info .player-info h3 {
+    margin: 5px 15px; }
+  .start-screen h2 {
+    font-size: 30px; }
+  .start-screen input {
+    width: 95%;
+    font-size: 30px; }
+  .randomTarget {
+    width: 50px;
+    height: 50px; }
+  .win-prompt {
+    top: 20%; } }
