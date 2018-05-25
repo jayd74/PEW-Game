@@ -5,6 +5,7 @@ const targetGame = {};
 targetGame.player = {
     score: 0,
     bullet: 6,
+    timeLeft: 60000,
 }; 
 // declaring playerScore and playerBullet for to simplify variable
     let playerScore = targetGame.player.score;
@@ -27,6 +28,7 @@ targetGame.player = {
                 $('.start-screen').hide();
                 $('.randomTarget').css('visibility','visible');
                 targetGame.bulletUsed();    
+                targetGame.startCountdown();
                 playerBullet += 1;
             });
         }
@@ -192,6 +194,23 @@ targetGame.gameWin = function(){
         targetGame.resetScore();
         $('.win-prompt').hide();
     })
+}
+
+targetGame.startCountdown = function() {
+  targetGame.countdown();
+  window.setInterval(targetGame.countdown, 1)
+}
+
+targetGame.outOfTime = function() {
+  targetGame.gameWin();
+}
+
+targetGame.countdown = function () {
+  $('.timeLeft').text(`${targetGame.player.timeLeft}`);
+  if (targetGame.player.timeLeft <= 0) {
+    targetGame.outOfTime();
+  }
+  targetGame.player.timeLeft -= 1;
 }
 
 // this function to initialize all the functions of the game.
